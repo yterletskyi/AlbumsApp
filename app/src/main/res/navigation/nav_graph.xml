@@ -1,5 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/list_of_photos">
+    <fragment
+        android:id="@+id/list_of_photos"
+        android:name="com.example.albumsapp.list_of_photos"
+        android:label="fragment_list_of_photos"
+        tools:layout="@layout/fragment_list_of_photos" >
+        <action
+            android:id="@+id/action_list_of_photos_to_selected_photo"
+            app:destination="@id/selected_photo" />
+    </fragment>
+    <fragment
+        android:id="@+id/list_of_albums"
+        android:name="com.example.albumsapp.list_of_albums"
+        android:label="fragment_list_of_albums"
+        tools:layout="@layout/fragment_list_of_albums" >
+        <action
+            android:id="@+id/action_list_of_albums_to_list_of_photos"
+            app:destination="@id/list_of_photos" />
+    </fragment>
+    <fragment
+        android:id="@+id/selected_photo"
+        android:name="com.example.albumsapp.selected_photo"
+        android:label="fragment_selected_photo"
+        tools:layout="@layout/fragment_selected_photo" />
 </navigation>

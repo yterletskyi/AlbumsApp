@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 
 
-class list_of_albums : Fragment() {
-
-
+class SelectedPhoto : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -20,7 +18,7 @@ class list_of_albums : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.fragment_list_of_albums, container, false)
+        return inflater.inflate(R.layout.fragment_selected_photo, container, false)
     }
 
 }

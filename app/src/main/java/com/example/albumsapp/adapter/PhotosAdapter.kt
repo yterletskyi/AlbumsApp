@@ -27,7 +27,6 @@ class PhotosAdapter : RecyclerView.Adapter<PhotosAdapter.PhotosViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: PhotosViewHolder, position: Int) {
-
         holder.button.setOnClickListener {
             val action = ListOfPhotosDirections.actionListOfPhotosToSelectedPhoto()
             holder.itemView.findNavController().navigate(action)

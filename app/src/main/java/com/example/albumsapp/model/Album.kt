@@ -1,3 +1,6 @@
 package com.example.albumsapp.model
 
-data class Album(val id : String, val title: String)
+data class Album(
+    val userId: Int,
+    val id : Int,
+    val title: String)

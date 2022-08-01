@@ -3,10 +3,9 @@ package com.example.albumsapp.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.albumsapp.model.Album
 import com.example.albumsapp.network.AlbumsApi
-import kotlinx.coroutines.launch
+
 
 class AlbumViewModel : ViewModel() {
     private val _albums = MutableLiveData<List<Album>>()
@@ -19,9 +18,7 @@ class AlbumViewModel : ViewModel() {
 
     private fun getAlbums() {
         try {
-            viewModelScope.launch {
-                _albums.value = AlbumsApi.retrofitService.getAlbums()
-            }
+            _albums.value = AlbumsApi.retrofitService.getAlbums()
         }catch(e : Exception) {
             _albums.value = listOf()
         }

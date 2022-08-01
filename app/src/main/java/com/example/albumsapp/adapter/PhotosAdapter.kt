@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.albumsapp.ListOfPhotosDirections
+import com.example.albumsapp.PhotosListFragmentDirections
 import com.example.albumsapp.R
 import com.example.albumsapp.model.Photo
 import com.example.albumsapp.viewmodel.PhotoViewModel
@@ -28,7 +28,7 @@ class PhotosAdapter : RecyclerView.Adapter<PhotosAdapter.PhotosViewHolder>() {
 
     override fun onBindViewHolder(holder: PhotosViewHolder, position: Int) {
         holder.button.setOnClickListener {
-            val action = ListOfPhotosDirections.actionListOfPhotosToSelectedPhoto()
+            val action = PhotosListFragmentDirections.actionListOfPhotosToSelectedPhoto()
             holder.itemView.findNavController().navigate(action)
         }
     }

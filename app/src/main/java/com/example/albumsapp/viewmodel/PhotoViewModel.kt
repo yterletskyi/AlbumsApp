@@ -13,12 +13,12 @@ class PhotoViewModel : ViewModel() {
     val photos : LiveData<List<Photo>> = _photos
 
     init {
-        getPhotos()
+
     }
 
-    private fun getPhotos() {
+    private fun getPhotos(index: String) {
         try {
-            _photos.value = AlbumsApi.retrofitService.getPhotos()
+            _photos.value = AlbumsApi.retrofitService.getPhotos(index)
         } catch (e : Exception) {
             _photos.value = listOf()
         }

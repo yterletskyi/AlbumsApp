@@ -22,10 +22,10 @@ val retrofit = Retrofit.Builder()
 
 
 interface AlbumApiService {
-    @GET("Albums")
+    @GET("/albums")
      fun getAlbums() : List<Album>
 
-    @GET("{albumId}/photos")
+    @GET("/{albumId}/photos")
      fun getPhotos(@Path("albumId") albumId: String) : List<Photo>
 }
 

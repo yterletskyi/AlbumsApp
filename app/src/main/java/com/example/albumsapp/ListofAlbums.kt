@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 
 
-class ListOfAlbums : Fragment() {
+class AlbumnListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

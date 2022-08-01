@@ -9,7 +9,7 @@ import com.example.albumsapp.network.AlbumsApi
 class AlbumViewModel : ViewModel() {
     private val _albums = MutableLiveData<List<Album>>()
 
-    val album : LiveData<List<Album>> = _albums
+    val albums : LiveData<List<Album>> = _albums
 
     init {
         getAlbums()

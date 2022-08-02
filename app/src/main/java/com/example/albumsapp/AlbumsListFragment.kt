@@ -14,7 +14,7 @@ import com.example.albumsapp.model.Album
 import com.example.albumsapp.viewmodel.AlbumViewModel
 
 
-class AlbumnsListFragment : Fragment() {
+class AlbumsListFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private var _binding: FragmentListOfAlbumsBinding? = null
     private val binding get() = _binding!!

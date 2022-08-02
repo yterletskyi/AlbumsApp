@@ -13,9 +13,9 @@ import com.example.albumsapp.viewmodel.PhotoViewModel
 
 class PhotosAdapter : RecyclerView.Adapter<PhotosAdapter.PhotosViewHolder>() {
 
-    private val viewModel : PhotoViewModel = PhotoViewModel()
-    private val listOfPhoto : List<Photo>? = viewModel.photos.value
-    class PhotosViewHolder(view : View) : RecyclerView.ViewHolder(view) {
+    private val viewModel: PhotoViewModel = PhotoViewModel()
+    private val listOfPhoto: List<Photo>? = viewModel.photos.value
+    class PhotosViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val button = view.findViewById<Button>(R.id.button_item)
     }
 

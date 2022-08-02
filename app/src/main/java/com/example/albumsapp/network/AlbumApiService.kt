@@ -20,17 +20,16 @@ val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 
-
 interface AlbumApiService {
     @GET("/albums")
-     suspend fun getAlbums() : List<Album>
+    suspend fun getAlbums(): List<Album>
 
     @GET("/{albumId}/photos")
-     suspend fun getPhotos(@Path("albumId") albumId: String) : List<Photo>
+    suspend fun getPhotos(@Path("albumId") albumId: String): List<Photo>
 }
 
 object AlbumsApi {
-    val retrofitService : AlbumApiService by lazy {
+    val retrofitService: AlbumApiService by lazy {
         retrofit.create(AlbumApiService::class.java)
     }
 }

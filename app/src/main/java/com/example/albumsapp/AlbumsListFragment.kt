@@ -13,7 +13,6 @@ import com.example.albumsapp.databinding.FragmentListOfAlbumsBinding
 import com.example.albumsapp.model.Album
 import com.example.albumsapp.viewmodel.AlbumViewModel
 
-
 class AlbumsListFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private var _binding: FragmentListOfAlbumsBinding? = null
@@ -22,7 +21,8 @@ class AlbumsListFragment : Fragment() {
     private val viewModel: AlbumViewModel by viewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentListOfAlbumsBinding.inflate(inflater, container, false)

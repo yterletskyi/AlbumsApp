@@ -1,26 +1,20 @@
 package com.example.albumsapp.adapter
 
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.accessibility.AccessibilityNodeInfo
 import android.widget.Button
-import androidx.annotation.RequiresApi
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.albumsapp.AlbumnListFragmentDirections
 import com.example.albumsapp.R
-import com.example.albumsapp.viewmodel.AlbumViewModel
 import com.example.albumsapp.model.Album
 
 
-class AlbumAdapter : RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
+class AlbumAdapter(
+    private val listOfAlbums: List<Album>,
+    private val onAlbumClicked: (Album) -> Unit,
+) : RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
 
-    private val viewModel : AlbumViewModel = AlbumViewModel()
-    private val listOfAlbums : List<Album>? = viewModel.albums.value
-
-    class AlbumViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+    class AlbumViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val button = view.findViewById<Button>(R.id.button_item)
     }
 
@@ -32,14 +26,13 @@ class AlbumAdapter : RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
-        val item = listOfAlbums?.get(position)
-        holder.button.text = item?.title
+        val item = listOfAlbums[position]
+        holder.button.text = item.title
 
         holder.button.setOnClickListener {
-            val action = AlbumnListFragmentDirections.actionListOfAlbumsToListOfPhotos()
-            holder.view.findNavController().navigate(action)
+            onAlbumClicked(item)
         }
     }
-    override fun getItemCount(): Int = listOfAlbums?.size ?: 0
 
+    override fun getItemCount(): Int = listOfAlbums.size
 }

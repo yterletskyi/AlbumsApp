@@ -1,0 +1,18 @@
+name: Code Style Check
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/ktlint.yml'
+      - 'src/**/*.kt'
+      - '**.kts'
+
+jobs:
+  ktlint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v3
+      - name: run ktlint
+        run: ./gradlew ktlintCheck
+        continue-on-error: false

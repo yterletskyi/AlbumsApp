@@ -9,19 +9,19 @@ import com.example.albumsapp.network.AlbumsApi
 import kotlinx.coroutines.launch
 
 
-class PhotoViewModel : ViewModel() {
+class PhotoViewModel() : ViewModel() {
     private val _photos = MutableLiveData<List<Photo>>()
 
     val photos : LiveData<List<Photo>> = _photos
 
     init {
-
+        getPhotos(1)
     }
 
-    private fun getPhotos(index: String) {
+    private fun getPhotos(albumId: Int) {
         viewModelScope.launch {
             try {
-                _photos.value = AlbumsApi.retrofitService.getPhotos(index)
+                _photos.value = AlbumsApi.retrofitService.getPhotos(albumId)
             }catch (e : Exception) {
             }
         }

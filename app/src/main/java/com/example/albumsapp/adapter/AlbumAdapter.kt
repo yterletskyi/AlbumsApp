@@ -4,7 +4,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.albumsapp.AlbumsListFragmentDirections
 import com.example.albumsapp.R
 import com.example.albumsapp.model.Album
 
@@ -31,6 +33,8 @@ class AlbumAdapter(
 
         holder.button.setOnClickListener {
             onAlbumClicked(item)
+            val action = AlbumsListFragmentDirections.actionListOfAlbumsToListOfPhotos()
+            holder.itemView.findNavController().navigate(action)
         }
     }
 

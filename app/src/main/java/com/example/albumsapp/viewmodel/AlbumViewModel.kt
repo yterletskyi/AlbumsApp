@@ -8,11 +8,10 @@ import com.example.albumsapp.model.Album
 import com.example.albumsapp.network.AlbumsApi
 import kotlinx.coroutines.launch
 
-
 class AlbumViewModel : ViewModel() {
     private val _albums = MutableLiveData<List<Album>>()
 
-    val albums : LiveData<List<Album>> = _albums
+    val albums: LiveData<List<Album>> = _albums
 
     init {
         getAlbums()
@@ -22,8 +21,7 @@ class AlbumViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 _albums.value = AlbumsApi.retrofitService.getAlbums()
-            }catch (e : Exception) {
-
+            } catch (e: Exception) {
             }
         }
     }

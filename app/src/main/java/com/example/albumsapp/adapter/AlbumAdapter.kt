@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.albumsapp.R
 import com.example.albumsapp.model.Album
 
-
 class AlbumAdapter(
     private val listOfAlbums: List<Album>,
     private val onAlbumClicked: (Album) -> Unit,

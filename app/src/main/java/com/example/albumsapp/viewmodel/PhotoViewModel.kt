@@ -5,7 +5,6 @@ import com.example.albumsapp.model.Photo
 import com.example.albumsapp.network.AlbumsApi
 import kotlinx.coroutines.launch
 
-
 class PhotoViewModel(val id: String) : ViewModel() {
     private val _photos = MutableLiveData<List<Photo>>()
 

@@ -1,7 +1,6 @@
 package com.example.albumsapp
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import com.example.albumsapp.adapter.PhotosAdapter
 import com.example.albumsapp.databinding.FragmentListOfPhotosBinding
 import com.example.albumsapp.model.Photo
 import com.example.albumsapp.viewmodel.PhotoViewModel
-
 
 
 class PhotosListFragment : Fragment() {
@@ -37,7 +35,8 @@ class PhotosListFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentListOfPhotosBinding.inflate(inflater, container, false)

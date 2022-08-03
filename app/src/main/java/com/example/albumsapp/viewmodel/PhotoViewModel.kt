@@ -20,7 +20,7 @@ class PhotoViewModel(val id: String) : ViewModel() {
     }
 
     init {
-        getPhotos(1)
+        getPhotos(id.toInt())
     }
 
     private fun getPhotos(albumId: Int) {

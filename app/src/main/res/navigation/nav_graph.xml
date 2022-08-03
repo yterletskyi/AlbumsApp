@@ -18,6 +18,10 @@
         android:name="com.example.albumsapp.PhotosListFragment"
         android:label="fragment_list_of_photos"
         tools:layout="@layout/fragment_list_of_photos" >
+        <argument
+            android:name="id"
+            app:argType="integer"
+            />
         <action
             android:id="@+id/action_list_of_photos_to_selected_photo"
             app:destination="@id/selected_photo" />

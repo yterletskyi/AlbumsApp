@@ -1,9 +1,11 @@
 package com.example.albumsapp.adapter
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.albumsapp.R
 import com.example.albumsapp.model.Photo
@@ -15,21 +17,20 @@ class PhotosAdapter(
 ) : RecyclerView.Adapter<PhotosAdapter.PhotosViewHolder>() {
 
     class PhotosViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val button = view.findViewById<Button>(R.id.button_item)
+        val imageView: ImageView = view.findViewById(R.id.album_photo)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotosViewHolder {
         val layout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_view, parent, false)
+            .inflate(R.layout.grid_view_photo, parent, false)
 
         return PhotosViewHolder(layout)
     }
 
     override fun onBindViewHolder(holder: PhotosViewHolder, position: Int) {
         val item = listOfPhotos[position]
-        holder.button.setOnClickListener {
-            onPhotosClicked(item)
-        }
+        val queryUrl: Uri = Uri.parse(item.url)
+        holder.imageView.setImageURI(queryUrl)
     }
 
     override fun getItemCount(): Int = listOfPhotos.size

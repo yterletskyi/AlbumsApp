@@ -19,9 +19,11 @@ class PhotosListFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private var _binding: FragmentListOfPhotosBinding? = null
     private val binding get() = _binding!!
-    private lateinit var albumId : String
+    private lateinit var id : String
 
-    val viewModel : PhotoViewModel by viewModels()
+    val viewModel : PhotoViewModel by viewModels {
+        PhotoViewModel.MyViewModelFactory(id)
+    }
 
     companion object {
         const val ID = "id"
@@ -30,7 +32,7 @@ class PhotosListFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments.let {
-            albumId = it?.get(ID).toString()
+            id = it?.get(ID).toString()
         }
     }
 

@@ -33,7 +33,7 @@ class AlbumAdapter(
 
         holder.button.setOnClickListener {
             onAlbumClicked(item)
-            val action = AlbumsListFragmentDirections.actionListOfAlbumsToListOfPhotos()
+            val action = AlbumsListFragmentDirections.actionListOfAlbumsToListOfPhotos(item.id)
             holder.itemView.findNavController().navigate(action)
         }
     }

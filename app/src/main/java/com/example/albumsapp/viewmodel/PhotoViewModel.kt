@@ -1,18 +1,23 @@
 package com.example.albumsapp.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.albumsapp.model.Photo
 import com.example.albumsapp.network.AlbumsApi
 import kotlinx.coroutines.launch
 
 
-class PhotoViewModel() : ViewModel() {
+class PhotoViewModel(val id: String) : ViewModel() {
     private val _photos = MutableLiveData<List<Photo>>()
 
-    val photos : LiveData<List<Photo>> = _photos
+    val photos: LiveData<List<Photo>> = _photos
+
+    class MyViewModelFactory(
+        private val id: String
+    ) : ViewModelProvider.NewInstanceFactory() {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            return PhotoViewModel(id) as T
+        }
+    }
 
     init {
         getPhotos(1)
@@ -22,7 +27,7 @@ class PhotoViewModel() : ViewModel() {
         viewModelScope.launch {
             try {
                 _photos.value = AlbumsApi.retrofitService.getPhotos(albumId)
-            }catch (e : Exception) {
+            } catch (e: Exception) {
             }
         }
     }

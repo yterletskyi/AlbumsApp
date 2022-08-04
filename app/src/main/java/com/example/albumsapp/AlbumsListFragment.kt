@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.albumsapp.adapter.AlbumAdapter
@@ -39,7 +40,8 @@ class AlbumsListFragment : Fragment() {
     }
 
     private fun onAlbumClicked(album: Album) {
-        // TODO: implement onAlbumClicked
+        val action = AlbumsListFragmentDirections.actionListOfAlbumsToListOfPhotos(album.id)
+        binding.album.findViewHolderForLayoutPosition(album.id)?.itemView?.findNavController()?.navigate(action)
     }
 
     override fun onDestroyView() {

@@ -14,5 +14,5 @@ jobs:
       - name: checkout repo
         uses: actions/checkout@v3
       - name: run ktlint
-        run: ./gradlew ktlintCheck
+        run: ./gradlew --version
         continue-on-error: false

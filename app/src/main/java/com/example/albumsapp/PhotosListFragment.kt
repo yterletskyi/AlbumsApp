@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.albumsapp.adapter.PhotosAdapter
 import com.example.albumsapp.databinding.FragmentListOfPhotosBinding
@@ -19,9 +20,9 @@ class PhotosListFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private var _binding: FragmentListOfPhotosBinding? = null
     private val binding get() = _binding!!
-    private lateinit var id : String
+    private lateinit var id: String
 
-    val viewModel : PhotoViewModel by viewModels {
+    val viewModel: PhotoViewModel by viewModels {
         PhotoViewModel.MyViewModelFactory(id)
     }
     val args: PhotosListFragmentArgs by navArgs()
@@ -37,20 +38,23 @@ class PhotosListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentListOfPhotosBinding.inflate(inflater, container, false)
-        return  binding.root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         recyclerView = binding.photos
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.layoutManager = GridLayoutManager(context, 4)
 
         viewModel.photos.observe(viewLifecycleOwner) {
             recyclerView.adapter = PhotosAdapter(it, ::onPhotoClicked)
         }
 
     }
-    private fun onPhotoClicked(photo : Photo) {
 
+    private fun onPhotoClicked(photo: Photo) {
+        val action = PhotosListFragmentDirections.actionListOfPhotosToSelectedPhoto()
+        binding.photos.findViewHolderForLayoutPosition(photo.id)?.itemView?.findNavController()
+            ?.navigate(action)
     }
 
     override fun onDestroyView() {

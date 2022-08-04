@@ -1,14 +1,14 @@
 package com.example.albumsapp.adapter
 
-import android.net.Uri
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.albumsapp.R
 import com.example.albumsapp.model.Photo
+import com.squareup.picasso.Picasso
 
 
 class PhotosAdapter(
@@ -29,9 +29,10 @@ class PhotosAdapter(
 
     override fun onBindViewHolder(holder: PhotosViewHolder, position: Int) {
         val item = listOfPhotos[position]
-        val queryUrl: Uri = Uri.parse(item.url)
-        holder.imageView.setImageURI(queryUrl)
+        Picasso.with(holder.itemView.context).load(item.thumbnailUrl).into(holder.imageView)
+        holder.imageView.setOnClickListener {
+            onPhotoClicked
+        }
     }
-
     override fun getItemCount(): Int = listOfPhotos.size
 }

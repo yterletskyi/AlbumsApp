@@ -41,7 +41,8 @@ class AlbumsListFragment : Fragment() {
 
     private fun onAlbumClicked(album: Album) {
         val action = AlbumsListFragmentDirections.actionListOfAlbumsToListOfPhotos(album.id)
-        binding.album.findViewHolderForLayoutPosition(album.id)?.itemView?.findNavController()?.navigate(action)
+        binding.album.findViewHolderForLayoutPosition(album.id)?.itemView?.findNavController()
+            ?.navigate(action)
     }
 
     override fun onDestroyView() {

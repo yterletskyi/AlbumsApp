@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.albumsapp.adapter.PhotosAdapter
@@ -23,16 +24,11 @@ class PhotosListFragment : Fragment() {
     val viewModel : PhotoViewModel by viewModels {
         PhotoViewModel.MyViewModelFactory(id)
     }
-
-    companion object {
-        const val ID = "id"
-    }
+    val args: PhotosListFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments.let {
-            id = it?.get(ID).toString()
-        }
+        id = args.id.toString()
     }
 
     override fun onCreateView(
@@ -49,11 +45,11 @@ class PhotosListFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         viewModel.photos.observe(viewLifecycleOwner) {
-            recyclerView.adapter = PhotosAdapter(it, ::onPhotosClicked)
+            recyclerView.adapter = PhotosAdapter(it, ::onPhotoClicked)
         }
 
     }
-    private fun onPhotosClicked(photo : Photo) {
+    private fun onPhotoClicked(photo : Photo) {
 
     }
 

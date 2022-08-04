@@ -13,7 +13,7 @@ import com.example.albumsapp.model.Photo
 
 class PhotosAdapter(
     private val listOfPhotos: List<Photo>,
-    private val onPhotosClicked: (Photo) -> Unit
+    private val onPhotoClicked: (Photo) -> Unit
 ) : RecyclerView.Adapter<PhotosAdapter.PhotosViewHolder>() {
 
     class PhotosViewHolder(view: View) : RecyclerView.ViewHolder(view) {

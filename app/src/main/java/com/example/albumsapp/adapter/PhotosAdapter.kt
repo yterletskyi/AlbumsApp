@@ -34,5 +34,6 @@ class PhotosAdapter(
             onPhotoClicked(item)
         }
     }
+
     override fun getItemCount(): Int = listOfPhotos.size
 }

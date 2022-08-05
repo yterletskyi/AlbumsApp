@@ -5,12 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.findFragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.albumsapp.adapter.PhotosAdapter
 import com.example.albumsapp.databinding.FragmentListOfPhotosBinding
 import com.example.albumsapp.model.Photo
@@ -19,19 +17,13 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
 class PhotosListFragment : Fragment() {
-    private lateinit var recyclerView: RecyclerView
     private var _binding: FragmentListOfPhotosBinding? = null
     private val binding get() = _binding!!
-    private lateinit var id: String
 
-    val viewModel: PhotoViewModel by viewModels {
-        PhotoViewModel.MyViewModelFactory(id)
-    }
     val args: PhotosListFragmentArgs by navArgs()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        id = args.id.toString()
+    val viewModel: PhotoViewModel by viewModels {
+        PhotoViewModel.MyViewModelFactory(args.id)
     }
 
     override fun onCreateView(
@@ -44,17 +36,15 @@ class PhotosListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        recyclerView = binding.photos
-        recyclerView.layoutManager = GridLayoutManager(context, 4)
-
+        binding.photos.layoutManager = GridLayoutManager(context, 4)
         viewModel.photos.observe(viewLifecycleOwner) {
-            recyclerView.adapter = PhotosAdapter(it, ::onPhotoClicked)
+            binding.photos.adapter = PhotosAdapter(it, ::onPhotoClicked)
         }
     }
 
     private fun onPhotoClicked(photo: Photo) {
         val action = PhotosListFragmentDirections.actionListOfPhotosToSelectedPhoto()
-        findNavController(binding.photos.findFragment()).navigate(action)
+        findNavController(this).navigate(action)
     }
 
     private fun showErrorAlertDialog(e: Exception) {

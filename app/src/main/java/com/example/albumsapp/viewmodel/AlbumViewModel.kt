@@ -10,7 +10,6 @@ import com.example.albumsapp.network.AlbumsApi
 import kotlinx.coroutines.launch
 
 
-
 class AlbumViewModel : ViewModel() {
     private val _albums = MutableLiveData<List<Album>>()
 

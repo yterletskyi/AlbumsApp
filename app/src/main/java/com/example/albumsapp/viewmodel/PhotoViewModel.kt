@@ -5,7 +5,7 @@ import com.example.albumsapp.model.Photo
 import com.example.albumsapp.network.AlbumsApi
 import kotlinx.coroutines.launch
 
-class PhotoViewModel(val id: String) : ViewModel() {
+class PhotoViewModel(val id: Int) : ViewModel() {
     private val _photos = MutableLiveData<List<Photo>>()
 
     val photos: LiveData<List<Photo>> = _photos
@@ -15,7 +15,7 @@ class PhotoViewModel(val id: String) : ViewModel() {
     val errorLiveData: LiveData<Exception> = _errorLiveData
 
     class MyViewModelFactory(
-        private val id: String
+        private val id: Int
     ) : ViewModelProvider.NewInstanceFactory() {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return PhotoViewModel(id) as T

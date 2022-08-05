@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.findFragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -44,7 +43,7 @@ class AlbumsListFragment : Fragment() {
 
     private fun onAlbumClicked(album: Album) {
         val action = AlbumsListFragmentDirections.actionListOfAlbumsToListOfPhotos(album.id)
-        findNavController(binding.album.findFragment()).navigate(action)
+        findNavController(this).navigate(action)
     }
 
     private fun showErrorAlertDialog(e: Exception) {

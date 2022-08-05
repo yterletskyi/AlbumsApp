@@ -11,7 +11,11 @@
         tools:layout="@layout/fragment_list_of_albums" >
         <action
             android:id="@+id/action_list_of_albums_to_list_of_photos"
-            app:destination="@id/list_of_photos" />
+            app:destination="@id/list_of_photos">
+            <argument
+                android:name="id"
+                app:argType="integer" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/list_of_photos"

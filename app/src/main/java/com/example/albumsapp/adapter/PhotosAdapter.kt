@@ -31,7 +31,7 @@ class PhotosAdapter(
         val item = listOfPhotos[position]
         Picasso.with(holder.itemView.context).load(item.thumbnailUrl).into(holder.imageView)
         holder.imageView.setOnClickListener {
-            onPhotoClicked
+            onPhotoClicked(item)
         }
     }
     override fun getItemCount(): Int = listOfPhotos.size

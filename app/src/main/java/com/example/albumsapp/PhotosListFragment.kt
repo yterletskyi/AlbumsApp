@@ -5,8 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.findFragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -53,8 +54,7 @@ class PhotosListFragment : Fragment() {
 
     private fun onPhotoClicked(photo: Photo) {
         val action = PhotosListFragmentDirections.actionListOfPhotosToSelectedPhoto()
-        binding.photos.findViewHolderForLayoutPosition(photo.id)?.itemView?.findNavController()
-            ?.navigate(action)
+        findNavController(binding.photos.findFragment()).navigate(action)
     }
 
     override fun onDestroyView() {

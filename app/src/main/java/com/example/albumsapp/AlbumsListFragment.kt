@@ -5,14 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.findFragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.albumsapp.adapter.AlbumAdapter
 import com.example.albumsapp.databinding.FragmentListOfAlbumsBinding
 import com.example.albumsapp.model.Album
 import com.example.albumsapp.viewmodel.AlbumViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class AlbumsListFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
@@ -41,8 +43,15 @@ class AlbumsListFragment : Fragment() {
 
     private fun onAlbumClicked(album: Album) {
         val action = AlbumsListFragmentDirections.actionListOfAlbumsToListOfPhotos(album.id)
-        binding.album.findViewHolderForLayoutPosition(album.id)?.itemView?.findNavController()
-            ?.navigate(action)
+        findNavController(binding.album.findFragment()).navigate(action)
+    }
+
+    private fun showErrorAlertDialog(e: Exception) {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Error")
+            .setMessage(e.message)
+            .setCancelable(true)
+            .show()
     }
 
     override fun onDestroyView() {

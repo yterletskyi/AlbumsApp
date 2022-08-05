@@ -10,6 +10,10 @@ class PhotoViewModel(val id: String) : ViewModel() {
 
     val photos: LiveData<List<Photo>> = _photos
 
+    private val _errorLiveData = MutableLiveData<Exception>()
+
+    val errorLiveData: LiveData<Exception> = _errorLiveData
+
     class MyViewModelFactory(
         private val id: String
     ) : ViewModelProvider.NewInstanceFactory() {
@@ -27,6 +31,7 @@ class PhotoViewModel(val id: String) : ViewModel() {
             try {
                 _photos.value = AlbumsApi.retrofitService.getPhotos(albumId)
             } catch (e: Exception) {
+                _errorLiveData.postValue(e)
             }
         }
     }

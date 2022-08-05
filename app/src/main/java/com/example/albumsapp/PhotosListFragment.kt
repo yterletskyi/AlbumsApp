@@ -15,6 +15,7 @@ import com.example.albumsapp.adapter.PhotosAdapter
 import com.example.albumsapp.databinding.FragmentListOfPhotosBinding
 import com.example.albumsapp.model.Photo
 import com.example.albumsapp.viewmodel.PhotoViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
 class PhotosListFragment : Fragment() {
@@ -49,12 +50,19 @@ class PhotosListFragment : Fragment() {
         viewModel.photos.observe(viewLifecycleOwner) {
             recyclerView.adapter = PhotosAdapter(it, ::onPhotoClicked)
         }
-
     }
 
     private fun onPhotoClicked(photo: Photo) {
         val action = PhotosListFragmentDirections.actionListOfPhotosToSelectedPhoto()
         findNavController(binding.photos.findFragment()).navigate(action)
+    }
+
+    private fun showErrorAlertDialog(e: Exception) {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Error")
+            .setMessage(e.message)
+            .setCancelable(true)
+            .show()
     }
 
     override fun onDestroyView() {

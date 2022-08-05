@@ -39,6 +39,7 @@ class AlbumsListFragment : Fragment() {
         viewModel.albums.observe(viewLifecycleOwner) {
             recyclerView.adapter = AlbumAdapter(it, ::onAlbumClicked)
         }
+
     }
 
     private fun onAlbumClicked(album: Album) {

@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/list_of_albums"
         android:name="com.example.albumsapp.AlbumsListFragment"
-        android:label="fragment_list_of_albums"
+        android:label="@string/albums_name"
         tools:layout="@layout/fragment_list_of_albums" >
         <action
             android:id="@+id/action_list_of_albums_to_list_of_photos"
@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/list_of_photos"
         android:name="com.example.albumsapp.PhotosListFragment"
-        android:label="fragment_list_of_photos"
+        android:label="@string/photos_name"
         tools:layout="@layout/fragment_list_of_photos" >
         <argument
             android:name="id"

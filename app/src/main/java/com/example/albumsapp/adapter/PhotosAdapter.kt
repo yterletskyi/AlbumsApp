@@ -1,7 +1,6 @@
 package com.example.albumsapp.adapter
 
 
-import android.graphics.Color.parseColor
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +8,8 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.albumsapp.R
 import com.example.albumsapp.model.Photo
+import com.example.albumsapp.parser.PhotoColorParser
 import com.squareup.picasso.Picasso
-import java.util.*
 
 
 class PhotosAdapter(
@@ -31,12 +30,9 @@ class PhotosAdapter(
 
     override fun onBindViewHolder(holder: PhotosViewHolder, position: Int) {
         val item = listOfPhotos[position]
-        var color = "#" + item.thumbnailUrl.takeLastWhile { it != '/' }.uppercase(Locale.ROOT)
-        if (color.length < 7) {
-            color += "0"
-        }
         Picasso.with(holder.itemView.context).load(item.thumbnailUrl).into(holder.imageView)
-        holder.imageView.setBackgroundColor(parseColor(color))
+        val color = PhotoColorParser(item.thumbnailUrl)
+        holder.imageView.setBackgroundColor(color.parse())
         holder.imageView.setOnClickListener {
             onPhotoClicked(item)
         }

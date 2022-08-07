@@ -35,12 +35,11 @@ class AlbumsListFragment : Fragment() {
         recyclerView = binding.album
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        viewModel.albums.observe(viewLifecycleOwner) { event ->
-            if (event != null) {
-                binding.album.adapter = AlbumAdapter(event, ::onAlbumClicked)
-            } else {
-                viewModel.errorLiveData.value?.let { showErrorAlertDialog(it) }
-            }
+        viewModel.albums.observe(viewLifecycleOwner) {
+            binding.album.adapter = AlbumAdapter(it, ::onAlbumClicked)
+        }
+        viewModel.errorLiveData.observe(viewLifecycleOwner) {
+            viewModel.errorLiveData.value?.let { exp -> showErrorAlertDialog(exp) }
         }
 
     }

@@ -37,12 +37,11 @@ class PhotosListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.photos.layoutManager = GridLayoutManager(context, 4)
-        viewModel.photos.observe(viewLifecycleOwner) { event ->
-            if (event != null) {
-                binding.photos.adapter = PhotosAdapter(event, ::onPhotoClicked)
-            } else {
-                viewModel.errorLiveData.value?.let { showErrorAlertDialog(it) }
-            }
+        viewModel.photos.observe(viewLifecycleOwner) {
+            binding.photos.adapter = PhotosAdapter(it, ::onPhotoClicked)
+        }
+        viewModel.errorLiveData.observe(viewLifecycleOwner) {
+            viewModel.errorLiveData.value?.let { exp -> showErrorAlertDialog(exp) }
         }
     }
 

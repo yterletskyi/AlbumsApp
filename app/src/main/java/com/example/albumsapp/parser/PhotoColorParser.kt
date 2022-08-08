@@ -9,6 +9,7 @@ class PhotoColorParser {
         while (color.length < 7) {
             color += "0"
         }
+
         return Color.parseColor(color)
     }
 }

@@ -15,7 +15,6 @@ import com.example.albumsapp.model.Photo
 import com.example.albumsapp.viewmodel.PhotoViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-
 class PhotosListFragment : Fragment() {
     private var _binding: FragmentListOfPhotosBinding? = null
     private val binding get() = _binding!!
@@ -41,7 +40,7 @@ class PhotosListFragment : Fragment() {
             binding.photos.adapter = PhotosAdapter(it, ::onPhotoClicked)
         }
         viewModel.errorLiveData.observe(viewLifecycleOwner) {
-            viewModel.errorLiveData.value?.let { it -> showErrorAlertDialog(it) }
+            showErrorAlertDialog(it)
         }
     }
 

@@ -39,9 +39,8 @@ class AlbumsListFragment : Fragment() {
             binding.album.adapter = AlbumAdapter(it, ::onAlbumClicked)
         }
         viewModel.errorLiveData.observe(viewLifecycleOwner) {
-            viewModel.errorLiveData.value?.let { it -> showErrorAlertDialog(it) }
+            showErrorAlertDialog(it)
         }
-
     }
 
     private fun onAlbumClicked(album: Album) {

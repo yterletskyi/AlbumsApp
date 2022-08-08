@@ -1,6 +1,5 @@
 package com.example.albumsapp.adapter
 
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import com.example.albumsapp.R
 import com.example.albumsapp.model.Photo
 import com.example.albumsapp.parser.PhotoColorParser
 import com.squareup.picasso.Picasso
-
 
 class PhotosAdapter(
     private val listOfPhotos: List<Photo>,

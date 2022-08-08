@@ -1,6 +1,10 @@
 package com.example.albumsapp.viewmodel
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import com.example.albumsapp.model.Photo
 import com.example.albumsapp.network.AlbumsApi
 import kotlinx.coroutines.launch

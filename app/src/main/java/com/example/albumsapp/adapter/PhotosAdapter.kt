@@ -17,6 +17,8 @@ class PhotosAdapter(
     private val onPhotoClicked: (Photo) -> Unit
 ) : RecyclerView.Adapter<PhotosAdapter.PhotosViewHolder>() {
 
+    private val colorParser: PhotoColorParser = PhotoColorParser()
+
     class PhotosViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageView: ImageView = view.findViewById(R.id.album_photo)
     }
@@ -31,8 +33,7 @@ class PhotosAdapter(
     override fun onBindViewHolder(holder: PhotosViewHolder, position: Int) {
         val item = listOfPhotos[position]
         Picasso.with(holder.itemView.context).load(item.thumbnailUrl).into(holder.imageView)
-        val color = PhotoColorParser(item.thumbnailUrl)
-        holder.imageView.setBackgroundColor(color.parse())
+        holder.imageView.setBackgroundColor(colorParser.parse(item.thumbnailUrl))
         holder.imageView.setOnClickListener {
             onPhotoClicked(item)
         }

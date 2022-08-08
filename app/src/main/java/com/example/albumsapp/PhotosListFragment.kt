@@ -41,7 +41,7 @@ class PhotosListFragment : Fragment() {
             binding.photos.adapter = PhotosAdapter(it, ::onPhotoClicked)
         }
         viewModel.errorLiveData.observe(viewLifecycleOwner) {
-            viewModel.errorLiveData.value?.let { exp -> showErrorAlertDialog(exp) }
+            viewModel.errorLiveData.value?.let { it -> showErrorAlertDialog(it) }
         }
     }
 

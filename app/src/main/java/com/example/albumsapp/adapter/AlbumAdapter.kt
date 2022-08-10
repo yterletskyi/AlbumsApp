@@ -14,7 +14,7 @@ class AlbumAdapter(
 ) : RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
 
     class AlbumViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val nameTxtView: TextView = view.findViewById(R.id.button_item)
+        val nameTxtView: TextView = view.findViewById(R.id.nameTxt)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
@@ -27,9 +27,9 @@ class AlbumAdapter(
     override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
         val item = listOfAlbums[position]
 
-        with(holder.nameTxtView) {
-            text = item.title
-            setOnClickListener { onAlbumClicked(item) }
+        with(holder) {
+            nameTxtView.text = item.title
+            itemView.setOnClickListener { onAlbumClicked(item) }
         }
     }
 

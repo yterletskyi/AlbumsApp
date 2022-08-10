@@ -23,7 +23,7 @@ class PhotoParserTest {
     }
 
     @Test
-    fun ctestWhite() {
+    fun testWhite() {
         val whiteUrl = "https://placeholder.com/600/ffffff"
         val actual = colorParser.parse(whiteUrl)
         Assert.assertEquals(Color.WHITE, actual)

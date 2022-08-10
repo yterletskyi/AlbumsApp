@@ -24,8 +24,8 @@ interface AlbumApiService {
     @GET("/albums")
     suspend fun getAlbums(): List<Album>
 
-    @GET("/{albumId}/photos")
-    suspend fun getPhotos(@Path("albumId") albumId: String): List<Photo>
+    @GET("/albums/{albumId}/photos")
+    suspend fun getPhotos(@Path("albumId") albumId: Int): List<Photo>
 }
 
 object AlbumsApi {

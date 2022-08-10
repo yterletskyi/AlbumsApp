@@ -6,12 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.albumsapp.adapter.AlbumAdapter
 import com.example.albumsapp.databinding.FragmentListOfAlbumsBinding
 import com.example.albumsapp.model.Album
 import com.example.albumsapp.viewmodel.AlbumViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class AlbumsListFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
@@ -34,12 +36,24 @@ class AlbumsListFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         viewModel.albums.observe(viewLifecycleOwner) {
-            recyclerView.adapter = AlbumAdapter(it, ::onAlbumClicked)
+            binding.album.adapter = AlbumAdapter(it, ::onAlbumClicked)
+        }
+        viewModel.errorLiveData.observe(viewLifecycleOwner) {
+            showErrorAlertDialog(it)
         }
     }
 
     private fun onAlbumClicked(album: Album) {
-        // TODO: implement onAlbumClicked
+        val action = AlbumsListFragmentDirections.actionListOfAlbumsToListOfPhotos(album.id)
+        findNavController(this).navigate(action)
+    }
+
+    private fun showErrorAlertDialog(e: Exception) {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Error")
+            .setMessage(e.message)
+            .setCancelable(true)
+            .show()
     }
 
     override fun onDestroyView() {

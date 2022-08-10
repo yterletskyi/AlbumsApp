@@ -3,35 +3,39 @@ package com.example.albumsapp.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.navigation.findNavController
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.albumsapp.PhotosListFragmentDirections
 import com.example.albumsapp.R
 import com.example.albumsapp.model.Photo
-import com.example.albumsapp.viewmodel.PhotoViewModel
+import com.example.albumsapp.parser.PhotoColorParser
+import com.squareup.picasso.Picasso
 
-class PhotosAdapter : RecyclerView.Adapter<PhotosAdapter.PhotosViewHolder>() {
+class PhotosAdapter(
+    private val listOfPhotos: List<Photo>,
+    private val onPhotoClicked: (Photo) -> Unit
+) : RecyclerView.Adapter<PhotosAdapter.PhotosViewHolder>() {
 
-    private val viewModel: PhotoViewModel = PhotoViewModel()
-    private val listOfPhoto: List<Photo>? = viewModel.photos.value
+    private val colorParser: PhotoColorParser = PhotoColorParser()
+
     class PhotosViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val button = view.findViewById<Button>(R.id.button_item)
+        val imageView: ImageView = view.findViewById(R.id.album_photo)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotosViewHolder {
         val layout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_view, parent, false)
+            .inflate(R.layout.grid_view_photo, parent, false)
 
         return PhotosViewHolder(layout)
     }
 
     override fun onBindViewHolder(holder: PhotosViewHolder, position: Int) {
-        holder.button.setOnClickListener {
-            val action = PhotosListFragmentDirections.actionListOfPhotosToSelectedPhoto()
-            holder.itemView.findNavController().navigate(action)
+        val item = listOfPhotos[position]
+        Picasso.with(holder.itemView.context).load(item.thumbnailUrl).into(holder.imageView)
+        holder.imageView.setBackgroundColor(colorParser.parse(item.thumbnailUrl))
+        holder.imageView.setOnClickListener {
+            onPhotoClicked(item)
         }
     }
 
-    override fun getItemCount(): Int = listOfPhoto?.size ?: 0
+    override fun getItemCount(): Int = listOfPhotos.size
 }

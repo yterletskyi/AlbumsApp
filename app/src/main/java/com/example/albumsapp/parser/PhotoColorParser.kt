@@ -1,28 +1,17 @@
 package com.example.albumsapp.parser
 
-import android.graphics.Color
-import java.util.Locale
+import androidx.annotation.ColorInt
 
 open class PhotoColorParser {
+    @ColorInt
     fun parse(url: String): Int {
-        val color = StringBuilder("#")
-        color.append(url.takeLastWhile { it != '/' }.uppercase(Locale.ROOT))
+        val lastSegment = url.takeLastWhile { it != '/' }
+        val colorIntRGB = lastSegment.toLong(16)
 
-        when (color.length) {
-            6 -> color.insert(5, "0")
-            4 -> {
-                var index = 1
-                while (index != color.length) {
-                    color.insert(index + 1, color[index])
-                    index++
-                }
-            }
-            else -> {
-                while (color.length < 7) {
-                    color.append("0")
-                }
-            }
-        }
-        return Color.parseColor(color.toString())
+        val red = (colorIntRGB shr 16) and 0xff
+        val green = (colorIntRGB shr 16) and 0xff
+        val blue = colorIntRGB and 0xff
+
+        return (0xff000000 or (red shl 16) or (green shl 8) or blue).toInt()
     }
 }

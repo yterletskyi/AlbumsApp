@@ -3,7 +3,7 @@ package com.example.albumsapp.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.albumsapp.R
 import com.example.albumsapp.model.Album
@@ -14,7 +14,7 @@ class AlbumAdapter(
 ) : RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
 
     class AlbumViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val button = view.findViewById<Button>(R.id.button_item)
+        val nameTxtView: TextView = view.findViewById(R.id.nameTxt)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
@@ -26,10 +26,10 @@ class AlbumAdapter(
 
     override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
         val item = listOfAlbums[position]
-        holder.button.text = item.title
 
-        holder.button.setOnClickListener {
-            onAlbumClicked(item)
+        with(holder) {
+            nameTxtView.text = item.title
+            itemView.setOnClickListener { onAlbumClicked(item) }
         }
     }
 

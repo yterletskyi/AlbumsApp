@@ -13,7 +13,7 @@ import com.example.albumsapp.databinding.FragmentSelectedPhotoBinding
 import com.example.albumsapp.viewmodel.PhotoViewModel
 
 class SelectedPhotoFragment : Fragment() {
-    private var _binding : FragmentSelectedPhotoBinding? = null
+    private var _binding: FragmentSelectedPhotoBinding? = null
     private val binding get() = _binding!!
 
     private val args: SelectedPhotoFragmentArgs by navArgs()
@@ -27,14 +27,14 @@ class SelectedPhotoFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       _binding = FragmentSelectedPhotoBinding.inflate(inflater, container, false)
+        _binding = FragmentSelectedPhotoBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.currentPhoto.layoutManager = LinearLayoutManager(context)
         viewModel.photos.observe(viewLifecycleOwner) {
-            binding.currentPhoto.adapter = PhotoAdapter(it[args.photo-1])
+            binding.currentPhoto.adapter = PhotoAdapter(it[args.photo - 1])
         }
     }
 

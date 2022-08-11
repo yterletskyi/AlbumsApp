@@ -15,8 +15,8 @@ class PhotoAdapter(private val photo: Photo) : RecyclerView.Adapter<PhotoAdapter
     private val colorParser: PhotoColorParser = PhotoColorParser()
 
     class PhotoViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-        val image : ImageView = view.findViewById(R.id.item_image)
-        val title : TextView = view.findViewById(R.id.item_title)
+        val image: ImageView = view.findViewById(R.id.item_image)
+        val title: TextView = view.findViewById(R.id.item_title)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
@@ -32,5 +32,4 @@ class PhotoAdapter(private val photo: Photo) : RecyclerView.Adapter<PhotoAdapter
     }
 
     override fun getItemCount(): Int = 1
-
 }

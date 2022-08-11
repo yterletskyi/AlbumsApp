@@ -5,16 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.albumsapp.adapter.PhotoAdapter
 import com.example.albumsapp.databinding.FragmentSelectedPhotoBinding
+import com.example.albumsapp.viewmodel.PhotoViewModel
 
 class SelectedPhotoFragment : Fragment() {
     private var _binding : FragmentSelectedPhotoBinding? = null
     private val binding get() = _binding!!
 
-    val args: SelectedPhotoFragmentArgs by navArgs()
+    private val args: SelectedPhotoFragmentArgs by navArgs()
+
+    private val viewModel: PhotoViewModel by viewModels {
+        PhotoViewModel.MyViewModelFactory(args.albumId)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,8 +32,10 @@ class SelectedPhotoFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.selectedPhoto.layoutManager = LinearLayoutManager(context)
-        binding.selectedPhoto.adapter = PhotoAdapter(args.photo)
+        binding.currentPhoto.layoutManager = LinearLayoutManager(context)
+        viewModel.photos.observe(viewLifecycleOwner) {
+            binding.currentPhoto.adapter = PhotoAdapter(it[args.photo-1])
+        }
     }
 
     override fun onDestroyView() {

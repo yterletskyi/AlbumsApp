@@ -24,7 +24,14 @@
         tools:layout="@layout/fragment_list_of_photos">
         <action
             android:id="@+id/action_list_of_photos_to_selected_photo"
-            app:destination="@id/selected_photo" />
+            app:destination="@id/selected_photo" >
+            <argument
+                android:name="photo"
+                app:argType="integer" />
+            <argument
+                android:name="albumId"
+                app:argType="integer" />
+        </action>
         <argument
             android:name="id"
             app:argType="integer" />
@@ -32,10 +39,13 @@
     <fragment
         android:id="@+id/selected_photo"
         android:name="com.example.albumsapp.SelectedPhotoFragment"
-        android:label="fragment_selected_photo"
+        android:label="@string/current_photo_name"
         tools:layout="@layout/fragment_selected_photo">
         <argument
             android:name="photo"
-            app:argType="com.example.albumsapp.model.Photo" />
+            app:argType="integer" />
+        <argument
+            android:name="albumId"
+            app:argType="integer" />
     </fragment>
 </navigation>

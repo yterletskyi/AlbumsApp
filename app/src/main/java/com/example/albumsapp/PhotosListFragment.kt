@@ -19,9 +19,9 @@ class PhotosListFragment : Fragment() {
     private var _binding: FragmentListOfPhotosBinding? = null
     private val binding get() = _binding!!
 
-    val args: PhotosListFragmentArgs by navArgs()
+    private val args: PhotosListFragmentArgs by navArgs()
 
-    val viewModel: PhotoViewModel by viewModels {
+    private val viewModel: PhotoViewModel by viewModels {
         PhotoViewModel.MyViewModelFactory(args.id)
     }
 
@@ -45,7 +45,7 @@ class PhotosListFragment : Fragment() {
     }
 
     private fun onPhotoClicked(photo: Photo) {
-        val action = PhotosListFragmentDirections.actionListOfPhotosToSelectedPhoto(photo)
+        val action = PhotosListFragmentDirections.actionListOfPhotosToSelectedPhoto(photo.id, args.id)
         findNavController(this).navigate(action)
     }
 

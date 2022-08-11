@@ -45,7 +45,7 @@ class PhotosListFragment : Fragment() {
     }
 
     private fun onPhotoClicked(photo: Photo) {
-        val action = PhotosListFragmentDirections.actionListOfPhotosToSelectedPhoto()
+        val action = PhotosListFragmentDirections.actionListOfPhotosToSelectedPhoto(photo)
         findNavController(this).navigate(action)
     }
 

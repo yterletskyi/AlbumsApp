@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -35,6 +36,7 @@ class SelectedPhotoFragment : Fragment() {
         binding.currentPhoto.layoutManager = LinearLayoutManager(context)
         viewModel.photos.observe(viewLifecycleOwner) {
             binding.currentPhoto.adapter = PhotoAdapter(it[args.photo - 1])
+            (activity as AppCompatActivity).supportActionBar?.title = it[args.photo-1].title
         }
     }
 

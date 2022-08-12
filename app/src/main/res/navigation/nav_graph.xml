@@ -39,7 +39,6 @@
     <fragment
         android:id="@+id/selected_photo"
         android:name="com.example.albumsapp.SelectedPhotoFragment"
-        android:label="@string/current_photo_name"
         tools:layout="@layout/fragment_selected_photo">
         <argument
             android:name="photo"

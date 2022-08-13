@@ -11,14 +11,17 @@ import retrofit2.http.Path
 
 private const val BASE_URL = "https://jsonplaceholder.typicode.com"
 
-val moshi = Moshi.Builder()
-    .add(KotlinJsonAdapterFactory())
-    .build()
+// will be replaced in Hilt
+object AlbumApiServiceObj {
+    val moshi = Moshi.Builder()
+        .add(KotlinJsonAdapterFactory())
+        .build()
 
-val retrofit = Retrofit.Builder()
-    .addConverterFactory(MoshiConverterFactory.create(moshi))
-    .baseUrl(BASE_URL)
-    .build()
+    val retrofit = Retrofit.Builder()
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
+        .baseUrl(BASE_URL)
+        .build()
+}
 
 interface AlbumApiService {
     @GET("/albums")
@@ -26,10 +29,4 @@ interface AlbumApiService {
 
     @GET("/albums/{albumId}/photos")
     suspend fun getPhotos(@Path("albumId") albumId: Int): List<Photo>
-}
-
-object AlbumsApi {
-    val retrofitService: AlbumApiService by lazy {
-        retrofit.create(AlbumApiService::class.java)
-    }
 }

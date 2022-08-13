@@ -1,14 +1,13 @@
 package com.example.albumsapp.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.albumsapp.model.Album
-import com.example.albumsapp.network.AlbumsApi
+import com.example.albumsapp.network.DataSource
 import kotlinx.coroutines.launch
 
-class AlbumViewModel : ViewModel() {
+class AlbumViewModel(
+    private val apiDataSource: DataSource,
+) : ViewModel() {
     private val _albums = MutableLiveData<List<Album>>()
 
     val albums: LiveData<List<Album>> = _albums
@@ -17,6 +16,15 @@ class AlbumViewModel : ViewModel() {
 
     val errorLiveData: LiveData<Exception> = _errorLiveData
 
+    class AlbumViewModelFactory(
+        private val apiDataSource: DataSource,
+    ) : ViewModelProvider.NewInstanceFactory() {
+        @Suppress("UNCHECKED_CAST")
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            return AlbumViewModel(apiDataSource) as T
+        }
+    }
+
     init {
         getAlbums()
     }
@@ -24,7 +32,7 @@ class AlbumViewModel : ViewModel() {
     private fun getAlbums() {
         viewModelScope.launch {
             try {
-                _albums.value = AlbumsApi.retrofitService.getAlbums()
+                _albums.value = apiDataSource.getAlbums()
             } catch (e: Exception) {
                 _errorLiveData.postValue(e)
             }

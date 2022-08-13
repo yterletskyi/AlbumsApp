@@ -12,10 +12,9 @@ import com.squareup.picasso.Picasso
 
 class PhotosAdapter(
     private val listOfPhotos: List<Photo>,
-    private val onPhotoClicked: (Photo) -> Unit
+    private val onPhotoClicked: (Photo) -> Unit,
+    private val colorParser: PhotoColorParser,
 ) : RecyclerView.Adapter<PhotosAdapter.PhotosViewHolder>() {
-
-    private val colorParser: PhotoColorParser = PhotoColorParser()
 
     class PhotosViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageView: ImageView = view.findViewById(R.id.album_photo)

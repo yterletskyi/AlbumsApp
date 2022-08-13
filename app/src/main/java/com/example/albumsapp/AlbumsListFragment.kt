@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.albumsapp.adapter.AlbumAdapter
 import com.example.albumsapp.databinding.FragmentListOfAlbumsBinding
 import com.example.albumsapp.model.Album
+import com.example.albumsapp.network.FakeDataSource
 import com.example.albumsapp.viewmodel.AlbumViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
@@ -20,7 +21,15 @@ class AlbumsListFragment : Fragment() {
     private var _binding: FragmentListOfAlbumsBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: AlbumViewModel by viewModels()
+//    private val apiDataSource = ApiDataSource(
+//        retrofitService = AlbumApiServiceObj.retrofit.create(AlbumApiService::class.java)
+//    )
+
+    private val apiDataSource = FakeDataSource()
+
+    private val viewModel: AlbumViewModel by viewModels {
+        AlbumViewModel.AlbumViewModelFactory(apiDataSource)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

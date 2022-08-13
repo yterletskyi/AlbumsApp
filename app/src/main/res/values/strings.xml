@@ -2,4 +2,5 @@
     <string name="app_name">Albums App</string>
     <string name="albums_name">Albums</string>
     <string name="photos_name">Photos</string>
+    <string name="current_photo_name">Current photo</string>
 </resources>

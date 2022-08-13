@@ -8,7 +8,7 @@
         android:id="@+id/list_of_albums"
         android:name="com.example.albumsapp.AlbumsListFragment"
         android:label="@string/albums_name"
-        tools:layout="@layout/fragment_list_of_albums" >
+        tools:layout="@layout/fragment_list_of_albums">
         <action
             android:id="@+id/action_list_of_albums_to_list_of_photos"
             app:destination="@id/list_of_photos">
@@ -21,18 +21,24 @@
         android:id="@+id/list_of_photos"
         android:name="com.example.albumsapp.PhotosListFragment"
         android:label="@string/photos_name"
-        tools:layout="@layout/fragment_list_of_photos" >
-        <argument
-            android:name="id"
-            app:argType="integer"
-            />
+        tools:layout="@layout/fragment_list_of_photos">
         <action
             android:id="@+id/action_list_of_photos_to_selected_photo"
-            app:destination="@id/selected_photo" />
+            app:destination="@id/selected_photo" >
+            <argument
+                android:name="photo"
+                app:argType="com.example.albumsapp.model.Photo" />
+        </action>
+        <argument
+            android:name="id"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/selected_photo"
         android:name="com.example.albumsapp.SelectedPhotoFragment"
-        android:label="fragment_selected_photo"
-        tools:layout="@layout/fragment_selected_photo" />
+        tools:layout="@layout/fragment_selected_photo">
+        <argument
+            android:name="photo"
+            app:argType="com.example.albumsapp.model.Photo" />
+    </fragment>
 </navigation>

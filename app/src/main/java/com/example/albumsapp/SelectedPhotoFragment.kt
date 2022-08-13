@@ -8,9 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.albumsapp.adapter.PhotoAdapter
 import com.example.albumsapp.databinding.FragmentSelectedPhotoBinding
+import com.example.albumsapp.parser.PhotoColorParser
 import com.example.albumsapp.viewmodel.PhotoViewModel
 
 class SelectedPhotoFragment : Fragment() {
@@ -19,9 +18,9 @@ class SelectedPhotoFragment : Fragment() {
 
     private val args: SelectedPhotoFragmentArgs by navArgs()
 
-    private val viewModel: PhotoViewModel by viewModels {
-        PhotoViewModel.MyViewModelFactory(args.albumId)
-    }
+    private val colorParser: PhotoColorParser = PhotoColorParser()
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,11 +32,11 @@ class SelectedPhotoFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.currentPhoto.layoutManager = LinearLayoutManager(context)
-        viewModel.photos.observe(viewLifecycleOwner) {
-            binding.currentPhoto.adapter = PhotoAdapter(it[args.photo - 1])
-            (activity as AppCompatActivity).supportActionBar?.title = it[args.photo-1].title
-        }
+        val url = args.photo.url
+        binding.itemImage.setBackgroundColor(colorParser.parse(url))
+        binding.itemTitle.text = args.photo.title
+        (activity as AppCompatActivity).supportActionBar?.title =
+            args.photo.title
     }
 
     override fun onDestroyView() {

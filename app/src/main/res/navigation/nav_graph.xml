@@ -27,10 +27,7 @@
             app:destination="@id/selected_photo" >
             <argument
                 android:name="photo"
-                app:argType="integer" />
-            <argument
-                android:name="albumId"
-                app:argType="integer" />
+                app:argType="com.example.albumsapp.model.Photo" />
         </action>
         <argument
             android:name="id"
@@ -42,9 +39,6 @@
         tools:layout="@layout/fragment_selected_photo">
         <argument
             android:name="photo"
-            app:argType="integer" />
-        <argument
-            android:name="albumId"
-            app:argType="integer" />
+            app:argType="com.example.albumsapp.model.Photo" />
     </fragment>
 </navigation>

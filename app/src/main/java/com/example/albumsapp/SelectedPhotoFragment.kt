@@ -6,11 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.albumsapp.databinding.FragmentSelectedPhotoBinding
 import com.example.albumsapp.parser.PhotoColorParser
-import com.example.albumsapp.viewmodel.PhotoViewModel
 
 class SelectedPhotoFragment : Fragment() {
     private var _binding: FragmentSelectedPhotoBinding? = null
@@ -19,8 +17,6 @@ class SelectedPhotoFragment : Fragment() {
     private val args: SelectedPhotoFragmentArgs by navArgs()
 
     private val colorParser: PhotoColorParser = PhotoColorParser()
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater,

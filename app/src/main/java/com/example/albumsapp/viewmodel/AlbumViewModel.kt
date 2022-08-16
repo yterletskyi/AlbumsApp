@@ -1,6 +1,9 @@
 package com.example.albumsapp.viewmodel
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.albumsapp.model.Album
 import com.example.albumsapp.network.DataSource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,7 +21,6 @@ class AlbumViewModel @Inject constructor(
     private val _errorLiveData = MutableLiveData<Exception>()
 
     val errorLiveData: LiveData<Exception> = _errorLiveData
-
 
     init {
         getAlbums()

@@ -10,7 +10,6 @@ import com.example.albumsapp.model.Photo
 import com.example.albumsapp.parser.PhotoColorParser
 import com.squareup.picasso.Picasso
 
-
 class PhotosAdapter(
     private val listOfPhotos: List<Photo>,
     private val onPhotoClicked: (Photo) -> Unit,

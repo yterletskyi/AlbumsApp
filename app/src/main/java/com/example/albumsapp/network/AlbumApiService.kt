@@ -5,7 +5,6 @@ import com.example.albumsapp.model.Photo
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-
 interface AlbumApiService {
     @GET("/albums")
     suspend fun getAlbums(): List<Album>

@@ -3,7 +3,10 @@ package com.example.albumsapp.viewmodel
 import androidx.lifecycle.*
 import com.example.albumsapp.model.Photo
 import com.example.albumsapp.network.DataSource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
+
 
 class PhotoViewModel(
     private val id: Int,
@@ -17,7 +20,7 @@ class PhotoViewModel(
 
     val errorLiveData: LiveData<Exception> = _errorLiveData
 
-    class MyViewModelFactory(
+    class MyViewModelFactory @Inject constructor(
         private val id: Int,
         private val apiDataSource: DataSource,
     ) : ViewModelProvider.NewInstanceFactory() {

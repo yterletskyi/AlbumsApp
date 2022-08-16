@@ -19,14 +19,6 @@ class AlbumViewModel @Inject constructor(
 
     val errorLiveData: LiveData<Exception> = _errorLiveData
 
-    class AlbumViewModelFactory(
-        private val apiDataSource: DataSource,
-    ) : ViewModelProvider.NewInstanceFactory() {
-        @Suppress("UNCHECKED_CAST")
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return AlbumViewModel(apiDataSource) as T
-        }
-    }
 
     init {
         getAlbums()

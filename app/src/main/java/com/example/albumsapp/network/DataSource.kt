@@ -2,13 +2,14 @@ package com.example.albumsapp.network
 
 import com.example.albumsapp.model.Album
 import com.example.albumsapp.model.Photo
+import javax.inject.Inject
 
 interface DataSource {
     suspend fun getAlbums(): List<Album>
     suspend fun getPhotos(albumId: Int): List<Photo>
 }
 
-class ApiDataSource(
+class ApiDataSource @Inject constructor(
     private val retrofitService: AlbumApiService,
 ) : DataSource {
 

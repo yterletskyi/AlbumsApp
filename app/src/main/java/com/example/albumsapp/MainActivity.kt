@@ -5,9 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
-import dagger.hilt.android.HiltAndroidApp
+import dagger.hilt.android.AndroidEntryPoint
 
-@HiltAndroidApp
+
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 

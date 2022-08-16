@@ -12,27 +12,18 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.albumsapp.adapter.PhotosAdapter
 import com.example.albumsapp.databinding.FragmentListOfPhotosBinding
 import com.example.albumsapp.model.Photo
-import com.example.albumsapp.network.AlbumApiService
-import com.example.albumsapp.network.AlbumApiServiceObj
 import com.example.albumsapp.network.ApiDataSource
-import com.example.albumsapp.network.FakeDataSource
 import com.example.albumsapp.parser.PhotoColorParser
 import com.example.albumsapp.viewmodel.PhotoViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class PhotosListFragment : Fragment() {
+class PhotosListFragment @Inject constructor(apiDataSource: ApiDataSource, private val colorParser: PhotoColorParser ) : Fragment() {
     private var _binding: FragmentListOfPhotosBinding? = null
     private val binding get() = _binding!!
-
-    private val apiDataSource = ApiDataSource(
-        retrofitService = AlbumApiServiceObj.retrofit.create(AlbumApiService::class.java)
-    )
-//    private val apiDataSource = FakeDataSource()
-
-    private val colorParser: PhotoColorParser = PhotoColorParser()
 
     private val args: PhotosListFragmentArgs by navArgs()
 

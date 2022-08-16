@@ -9,14 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.example.albumsapp.databinding.FragmentSelectedPhotoBinding
 import com.example.albumsapp.parser.PhotoColorParser
+import javax.inject.Inject
 
-class SelectedPhotoFragment : Fragment() {
+class SelectedPhotoFragment @Inject constructor(private val colorParser: PhotoColorParser) :
+    Fragment() {
     private var _binding: FragmentSelectedPhotoBinding? = null
     private val binding get() = _binding!!
 
     private val args: SelectedPhotoFragmentArgs by navArgs()
-
-    private val colorParser: PhotoColorParser = PhotoColorParser()
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -3,9 +3,12 @@ package com.example.albumsapp.viewmodel
 import androidx.lifecycle.*
 import com.example.albumsapp.model.Album
 import com.example.albumsapp.network.DataSource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AlbumViewModel(
+@HiltViewModel
+class AlbumViewModel @Inject constructor(
     private val apiDataSource: DataSource,
 ) : ViewModel() {
     private val _albums = MutableLiveData<List<Album>>()

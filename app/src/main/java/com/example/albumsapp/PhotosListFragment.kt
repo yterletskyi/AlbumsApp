@@ -19,15 +19,18 @@ import com.example.albumsapp.network.FakeDataSource
 import com.example.albumsapp.parser.PhotoColorParser
 import com.example.albumsapp.viewmodel.PhotoViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class PhotosListFragment : Fragment() {
     private var _binding: FragmentListOfPhotosBinding? = null
     private val binding get() = _binding!!
 
-//    private val apiDataSource = ApiDataSource(
-//        retrofitService = AlbumApiServiceObj.retrofit.create(AlbumApiService::class.java)
-//    )
-    private val apiDataSource = FakeDataSource()
+    private val apiDataSource = ApiDataSource(
+        retrofitService = AlbumApiServiceObj.retrofit.create(AlbumApiService::class.java)
+    )
+//    private val apiDataSource = FakeDataSource()
 
     private val colorParser: PhotoColorParser = PhotoColorParser()
 

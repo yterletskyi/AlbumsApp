@@ -15,7 +15,9 @@ import com.example.albumsapp.model.Album
 import com.example.albumsapp.network.FakeDataSource
 import com.example.albumsapp.viewmodel.AlbumViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AlbumsListFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private var _binding: FragmentListOfAlbumsBinding? = null

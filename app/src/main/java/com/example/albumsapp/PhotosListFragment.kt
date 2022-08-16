@@ -20,7 +20,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class PhotosListFragment @Inject constructor(apiDataSource: ApiDataSource, private val colorParser: PhotoColorParser) : Fragment() {
+class PhotosListFragment @Inject constructor(
+    apiDataSource: ApiDataSource,
+    private val colorParser: PhotoColorParser
+) : Fragment() {
     private var _binding: FragmentListOfPhotosBinding? = null
     private val binding get() = _binding!!
 

@@ -11,8 +11,9 @@ import com.example.albumsapp.databinding.FragmentSelectedPhotoBinding
 import com.example.albumsapp.parser.PhotoColorParser
 import javax.inject.Inject
 
-class SelectedPhotoFragment @Inject constructor(private val colorParser: PhotoColorParser) :
-    Fragment() {
+class SelectedPhotoFragment @Inject constructor(
+    private val colorParser: PhotoColorParser
+) : Fragment() {
     private var _binding: FragmentSelectedPhotoBinding? = null
     private val binding get() = _binding!!
 

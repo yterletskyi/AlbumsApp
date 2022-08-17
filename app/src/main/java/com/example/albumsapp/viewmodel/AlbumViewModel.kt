@@ -5,10 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.albumsapp.model.Album
-import com.example.albumsapp.network.AlbumsApi
+import com.example.albumsapp.network.DataSource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AlbumViewModel : ViewModel() {
+@HiltViewModel
+class AlbumViewModel @Inject constructor(
+    private val apiDataSource: DataSource,
+) : ViewModel() {
     private val _albums = MutableLiveData<List<Album>>()
 
     val albums: LiveData<List<Album>> = _albums
@@ -24,7 +29,7 @@ class AlbumViewModel : ViewModel() {
     private fun getAlbums() {
         viewModelScope.launch {
             try {
-                _albums.value = AlbumsApi.retrofitService.getAlbums()
+                _albums.value = apiDataSource.getAlbums()
             } catch (e: Exception) {
                 _errorLiveData.postValue(e)
             }
